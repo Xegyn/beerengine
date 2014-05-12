@@ -1,0 +1,60 @@
+{% extends "home.html" %}
+{% block content %}
+	<h2>Add Brewery</h2>
+	<form action="/admin/addbreweryaction" method="post" id="Form">
+		<div class="FormFieldSet">
+			<label for="Name"><span class="Required">*</span> Brewery Name:</label>
+			<input type="text" name="Name" id="Name" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="Address">Address:</label>
+			<textarea name="Address" id="Address"></textarea>
+		</div>
+		<div class="FormFieldSet">
+			<label for="AddressCity">Address City:</label>
+			<input type="text" name="AddressCity" id="AddressCity" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="AddressState">Address State:</label>
+			<select name="AddressState" id="AddressState" />
+				<option value=""></option>
+				{% for State in States %}
+					<option value="{{State.key}}">{{State.Name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="FormFieldSet">
+			<label for="Website">Website:</label>
+			<input type="text" name="Website" id="Website" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="Phone">Phone:</label>
+			<input type="text" name="Phone" id="Phone" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="EstablishedYear">Established Year:</label>
+			<input type="text" name="EstablishedYear" id="EstablishedYear" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="EstablishedMonth">Established Month:</label>
+			<input type="text" name="EstablishedMonth" id="EstablishedMonth" />
+		</div>
+		<div class="FormFieldSet">
+			<label>Open To Public:</label>
+			<input type="radio" name="OpenToPublic" id="OpenToPublicYes" value="Yes" />
+			<label for="OpenToPublicYes" class="Radio">Yes</label>
+			<input type="radio" name="OpenToPublic" id="OpenToPublicNo" value="No" />
+			<label for="OpenToPublicNo" class="Radio">No</label>
+			<input type="radio" name="OpenToPublic" id="OpenToPublicNotSure" value="Not Sure" checked="checked" />
+			<label for="OpenToPublicNone" class="Radio">Not Sure</label>
+		</div>
+		<div class="FormFieldSet">
+			<label for="Notes">Notes:</label>
+			<textarea name="Notes" id="Notes"></textarea>
+		</div>
+		<div class="FormFieldSet">
+			<label>&nbsp;</label>
+			<input type="submit" value="Submit" class="SubmitButton" />
+		</div>
+	</form>
+{% endblock %}

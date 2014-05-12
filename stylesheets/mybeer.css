@@ -1,0 +1,54 @@
+body {background-color:#ffe789;font-family:"Arial";font-size:14px;}
+a {color:#1155CC;text-decoration:none;}
+a:hover {text-decoration:underline;}
+.MainContainer {margin:0px auto;width:900px;}
+.Header {background-color:#565241;color:white;height:100px;padding:0px 20px;border-radius:15px;margin-bottom:10px;}
+.Header h1 {font-size:28px;font-family:"Arial";line-height:100px;}
+.Header h1 a {color:white;text-decoration:none;}
+.HeaderText {float:right;margin:0px 5px;line-height:100px;color:#ffe789;}
+.HeaderLink {float:right;margin:0px 5px;line-height:100px;}
+.HeaderLink a {color:white;}
+.MainBody {background-color:white;padding:20px;border-radius:15px;}
+.MainBody .BreweryDetails {height:240px;position:relative;}
+.MainBody h2 {font-family:"Arial";color:#565241;}
+.MainBody h2.Beer {margin-bottom:1px;}
+.MainBody h3 {font-family:"Arial";color:#565241;}
+.MainBody h3.ByLine {margin-top:1px;}
+.MainBody address {font-style:normal;font-size:12px;}
+.MainBody .BeerDetails {font-size:12px;clear:both;}
+.MainBody .RatingWrapper {position:relative;height:70px;}
+.MainBody .RatingWrapper .RatingContainer {position:absolute;z-index:3;left:5;}
+.MainBody .RatingWrapper .RatingBar {position:absolute;z-index:2;background-image:url('/images/ratingbar.png');height:60px;}
+.MainBody .RatingWrapper .RatingText {position:absolute;z-index:4;color:white;font-weight:bold;margin:5px 5px;font-size:15px;}
+.MainBody .RatingWrapper .RatingText .SubText {font-size:10px;}
+.MainBody .RatingWrapperMini {position:relative;height:55px;}
+.MainBody .RatingWrapperMini .RatingContainerMini {position:absolute;z-index:3;left:5;}
+.MainBody .RatingWrapperMini .RatingBarMini {position:absolute;z-index:2;background-image:url('/images/ratingbarmini.png');height:45px;}
+.MainBody .RatingWrapperMini .RatingText {position:absolute;z-index:4;color:white;font-weight:bold;margin:5px 5px;font-size:12px;}
+.MainBody label {font-weight:bold;}
+.MainBody .AdditionalDetails {font-size:12px;margin-top:5px;padding:5px;background-color:#EEEEEE;width:580px;position:absolute;bottom:5px;}
+.MainBody #BreweryMap {width:250px;height:250px;border:1px solid black;float:right;z-index:5;}
+.MainBody  .BeerSection a:hover {text-decoration:none;}
+.MainBody .BeerContainer {width:250px;height:250px;float:left;border:1px solid black;cursor:pointer;margin:5px;padding:5px;background-color:#EEEEEE;}
+.MainBody .BeerContainer .BeerName {width:130px;float:left;}
+.MainBody .BeerContainer .RatingContainer {float:left;}
+.MainBody .BeerReviews .Review {border:1px solid #CCCCCC; margin-bottom:15px;padding:5px;}
+.MainBody .BeerReviews .Review .ReviewHeader {}
+.MainBody .BeerReviews .Review .Profile {font-weight:bold;margin-bottom:10px;border-right:1px solid gray;width:200px;height:50px;float:left;}
+.MainBody .BeerReviews .Review .ReviewDetails {float:left;margin-left:10px;font-size:12px;}
+.MainBody .BeerReviews .Review .Rating {}
+.MainBody .BeerReviews .Review .ReviewText {}
+.MainBody form#Form {width:700px;}
+.MainBody form#Form .Required {color:red;}
+.MainBody form#Form .Error {color:red;font-weight:bold;}
+.MainBody form#Form .FormFieldSet {margin:5px 0px;}
+.MainBody form#Form .FormFieldSet label {width:200px;display:block;float:left;font-weight:normal;}
+.MainBody form#Form .FormFieldSet label.Radio {float:none;display:inline;margin-right:10px;}
+.MainBody form#Form .FormFieldSet div.Vertical {float:left;height:50px;}
+.MainBody form#Form .FormFieldSet div.Vertical label {float:none;display:inline;margin:0px;}
+.MainBody form#Form .FormFieldSet textarea {width:300px;height:100px;}
+.MainBody form#Form .OptionalDetails {background-color:#EEEEEE;}
+.MainBody form#Form  .SubmitButton {height:30px;width:200px;}
+.MainBody form#Form .FormFieldSet .SliderContainer {float:left;}
+.MainBody form#Form .FormFieldSet .SliderContainer #sliderbg {}
+.MainBody form#Form .FormFieldSet .SliderDescription {font-weight:bold;float:left;margin-left:40px;}

@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block content %}
+	<h2>Manage Styles</h2>
+	
+	<div style="float:left;">
+	<form action="/admin/managestylesaction" method="post" id="Form">
+		<div class="FormFieldSet">
+			<label for="Name"><span class="Required">*</span> Style Name:</label>
+			<input type="text" name="Name" id="Name" />
+		</div>
+		
+		<div class="FormFieldSet">
+			<label>&nbsp;</label>
+			<input type="submit" value="Submit" />
+		</div>
+	</form>
+	</div>
+	<div style="float:left;">
+		<h3>Styles</h3>
+		<ul>
+			{% for Style in Styles %}
+			<li>{{Style.Name}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<br style="clear:both;" />
+{% endblock %}

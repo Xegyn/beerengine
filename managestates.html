@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% block content %}
+	<h2>Manage Styles</h2>
+	
+	<div style="float:left;">
+	<form action="/admin/managestatesaction" method="post" id="Form">		
+		<div class="FormFieldSet">
+			<label>&nbsp;</label>
+			<input type="submit" value="Reset States" />
+		</div>
+	</form>
+	</div>
+	<div style="float:left;">
+		<h3>States</h3>
+		<ul>
+			{% for State in States %}
+			<li>{{State.Name}} : {{State.Acronym}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<br style="clear:both;" />
+{% endblock %}

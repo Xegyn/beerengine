@@ -1,0 +1,84 @@
+{% extends "home.html" %}
+
+{% block script %}
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+function GeoCodeLoc()
+{
+	var g = new google.maps.Geocoder();
+	g.geocode({'address':'{{Brewery.Address|removebreaks}}'},LoadMap);
+}
+function LoadMap(data, status)
+{
+    var myOptions = {
+      zoom: 6,
+      zoom: 6,
+      center: data[0].geometry.location,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  streetViewControl: false,
+	  mapTypeControl: false
+    };
+    var map = new google.maps.Map(document.getElementById("BreweryMap"),
+        myOptions);
+	var marker = new google.maps.Marker({position:data[0].geometry.location,map:map});
+}
+
+$(document).ready(GeoCodeLoc);
+</script>
+{% endblock %}
+
+{% block content %}
+	<div id="BreweryMap"></div>
+	<div class="BreweryDetails">
+		<h2>{{Brewery.Name}}</h2>
+		<address>
+			{{Brewery.Address|HTMLbreaks}}<br />
+			{{Brewery.Phone}}<br /><br />
+			<a href="{{Brewery.Website}}" target="_blank">{{Brewery.Website}}</a>
+		</address>
+		<fieldset class="AdditionalDetails">
+			<legend>Additional Details</legend>
+			<strong>Open to the public:</strong> {{Brewery.OpenToPublic}}<br />
+			<strong>Notes:</strong> {{Brewery.Notes}}
+		</fieldset>
+	</div>
+	<br style="clear:both;" />
+	<hr />
+	{% block beercontent %}
+		<div class="BeerSection"> 
+			{% for Beer in Beers %}
+				<a href="/beer/{{Beer.key}}">
+					<div class="BeerContainer">
+						<div class="BeerName">
+							{{Beer.Name}}
+						</div>
+						<div class="RatingContainer" style="width:120px;">
+							<div class="RatingWrapper">
+								<img src="/images/ratingcontainer.png" class="RatingContainer" />
+								<div class="RatingBar" style="width:{{Beer.AverageRating|ConvertToRatingPixels}}px"></div>
+								<div class="RatingText">
+									Rating: {{Beer.AverageRating}}
+									<div class="SubText">
+										On {{Beer.NumberOfReviews}} {% if Beer.NumberOfReviews != 1 %}ratings{% else %}rating{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<br style="clear:both;" />
+						<div style="margin:70px 90px;">
+							No Image
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+			
+			<br style="clear:both;" />
+			<br />
+			{% if IsAdmin %}
+			<a href="/admin/addbeer/{{Brewery.key}}">Add Beer</a>
+			{% endif %}
+		</div>
+	{% endblock %}
+	
+{% endblock %}

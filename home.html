@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>{{AppName}}</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/mybeer.css">
+{% block script %}
+{% endblock %}
+</head>
+
+<body>
+<div class="MainContainer">
+	<div class="Header">
+		<div class="HeaderLink"><a href="{{SignInURL}}">{{SignInText}}</a></div>
+		{% if IsAdmin %}
+		<div class="HeaderLink"><a href="/admin">Admin</a></div>
+		{% endif %}
+		{% if SignedIn %}
+		<div class="HeaderLink">
+			<a href="/profile">Profile</a>
+		</div>
+		<div class="HeaderText">
+			Logged in as {{UserObject.DisplayName}}.
+		</div>
+		{% endif %}
+		<h1><a href="/">{{AppName}}</a></h1>
+	</div>
+	<div class="MainBody">
+		{% block content %}
+		<p>Welcome, {{UserObject.DisplayName}}!</p>
+		<p>Get started with the {{AppName}} by clicking on one of the following:
+		<ul>
+			<li><a href="/viewallbreweries">View All Breweries</a></li>
+		</ul>
+		{% endblock %}
+	</div>
+</div>
+</body>
+</html>

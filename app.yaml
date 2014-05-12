@@ -1,0 +1,29 @@
+application: xegynapp
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /scripts
+  static_dir: scripts
+
+- url: /images
+  static_dir: images
+  
+- url: (/admin|/admin/.*)
+  login: admin
+  script: mybeer.py
+
+- url: (/profile|/profile/.*)
+  login: required
+  script: mybeer.py
+
+- url: .*
+  login: admin
+  script: mybeer.py
+
+builtins:
+- datastore_admin: on

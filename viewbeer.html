@@ -1,0 +1,69 @@
+{% extends "home.html" %}
+
+{% block content %}
+	{% block beername %}
+	<h2 class="Beer">{{Beer.Name}}</h2>
+	{% endblock %}
+	<h3 class="ByLine">by <a href="/brewery/{{Beer.Brewery.key}}">{{Beer.Brewery.Name}}</a></h3>
+	
+	<div class="RatingWrapper">
+		<img src="/images/ratingcontainer.png" class="RatingContainer" />
+		<div class="RatingBar" style="width:{{Beer.AverageRating|ConvertToRatingPixels}}px"></div>
+		<div class="RatingText">
+			Rating: {{Beer.AverageRating}}
+			<div class="SubText">
+				On {{Beer.NumberOfReviews}} {% if Beer.NumberOfReviews != 1 %}ratings{% else %}rating{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	<div class="BeerDetails">
+		<label>Style:</label> {% if Beer.Style != None %}{{Beer.Style.Name}}{% endif %}<br />
+		<label>ABV:</label> {% if Beer.ABV != None %}{{Beer.ABV}}%{% endif %}<br />
+		<label>IBU:</label> {% if Beer.IBU != None %}{{Beer.IBU}}{% endif %}
+	</div>
+	<hr />
+
+	{% block review %}
+	<div class="BeerReviews">
+		<h3>{{Beer.BeerReviews.count}} {% if Beer.NumberOfReviews != 1 %}reviews{% else %}review{% endif %}</h3>
+		<a href="/beer/review/{{Beer.key}}">{% if Beer.NumberOfReviews == 0 %}Be the first to review this beer!{% else %}Review this beer!{% endif %}</a>
+		
+		{% for Review in Beer.BeerReviews %}
+		<div class="Review">
+			<div class="ReviewHeader">
+				<div class="Profile">
+					{{Review.Author.DisplayName}}<br />
+					Reviews: {{Review.Author.NumberOfReviews}}
+				</div>
+				<div class="ReviewDetails" style="width:120px;">
+					<div class="RatingWrapperMini">
+						<img src="/images/ratingcontainermini.png" class="RatingContainerMini" />
+						<div class="RatingBarMini" style="width:{{Review.Rating|ConvertToRatingPixels}}px"></div>
+						<div class="RatingText">
+							Rating: {{Review.Rating}}
+						</div>
+					</div>	
+				</div>
+				<div class="ReviewDetails" style="width:225px;">
+					<label>Date:</label> {{Review.CreatedDT}}<br />
+					<label>Source:</label> {{Review.Source}}
+				</div>
+				<div class="ReviewDetails" style="width:225px;">
+					<label>Aroma:</label> {{Review.Aroma}}<br />
+					<label>Flavor:</label> {{Review.Flavor}}
+				</div>
+			</div>
+			<hr style="clear:both;" />
+
+			<div class="ReviewText">
+				{{Review.Review}}
+			</div>
+		</div>
+		{% endfor %}
+
+
+	</div>
+	{% endblock %}
+	
+{% endblock %}

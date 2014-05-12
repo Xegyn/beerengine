@@ -1,0 +1,9 @@
+{% extends "home.html" %}
+{% block content %}
+	<h2>All Breweries</h2>
+	<ul>
+		{% for Brewery in Breweries %}
+			<li><a href="/brewery/{{Brewery.key}}">{{Brewery.Name}}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

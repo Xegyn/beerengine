@@ -1,0 +1,109 @@
+{% extends "viewbeer.html" %}
+
+{% block script %}
+	<link rel="stylesheet" type="text/css" href="/scripts/yui/slider/assets/skins/sam/slider.css">
+	<script type="text/javascript" src="/scripts/jquery.js"></script>
+	<script type="text/javascript" src="/scripts/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="/scripts/yui/dragdrop/dragdrop-min.js"></script>
+	<script type="text/javascript" src="/scripts/yui/slider/slider-min.js"></script>
+	<script type="text/javascript">
+		function InitSlider()
+		{
+			slider = YAHOO.widget.Slider.getHorizSlider("sliderbg", "sliderthumb", 0, 200, 40);
+			slider.subscribe('change', function(newOffset){
+				var value = newOffset / 40;
+				$('#RatingValue').val(value);
+				if(value==0)
+					$('#RatingSlider').text('No Rating');
+				else if(value==1)
+					$('#RatingSlider').text('1: Terrible beer');
+				else if(value==2)
+					$('#RatingSlider').text('2: Bad beer');
+				else if(value==3)
+					$('#RatingSlider').text('3: Average beer');
+				else if(value==4)
+					$('#RatingSlider').text('4: Good beer');
+				else if(value==5)
+					$('#RatingSlider').text('5: Fantastic beer');
+			});
+		}
+		$(document).ready(InitSlider);
+	</script>
+{% endblock %}
+
+{% block beername %}
+	<h2 class="Beer"><a href="/beer/{{Beer.key}}">{{Beer.Name}}</a></h2>
+{% endblock %}
+	
+{% block review %}
+
+	<h3>My Review</h3>
+	<form action="/beer/reviewaction/{{Beer.key}}" method="post" id="Form">
+		<div class="FormFieldSet yui-skin-sam">
+			<label for="Rating"><span class="Required">*</span> Rating (1-5):</label>
+			<div class="SliderContainer">
+				<div id="sliderbg" class="yui-h-slider" tabindex="-1">
+					<div id="sliderthumb" class="yui-slider-thumb">
+						<img src="/scripts/yui/slider/assets/thumb-n.gif" alt="slider thumb">
+					</div>
+				</div>
+			</div>
+			<div class="SliderDescription" id="RatingSlider">No Rating</div>
+			<input type="hidden" name="RatingValue" id="RatingValue" value="0" />
+		</div>
+		<br style="clear:both;" />
+		<div class="FormFieldSet">
+			<label for="Review"><span class="Required">*</span> Review:</label>
+			<textarea name="Review" id="Review"></textarea>
+		</div>
+		<fieldset class="OptionalDetails">
+			<legend>Optional Details</legend>
+			<div class="FormFieldSet">
+				<label>Source:</label>
+				<input type="radio" name="Source" id="SourceDraft" value="Draft" />
+				<label for="SourceDraft" class="Radio">Draft / On Tap</label>
+				<input type="radio" name="Source" id="SourceBottle" value="Bottle" />
+				<label for="SourceBottle" class="Radio">Bottle</label>
+				<input type="radio" name="Source" id="SourceCan" value="Can" />
+				<label for="SourceCan" class="Radio">Can</label>
+				<input type="radio" name="Source" id="SourceOther" value="Other" />
+				<label for="SourceOther" class="Radio">Other</label>
+				<input type="radio" name="Source" id="SourceNotSure" value="Not Sure" />
+				<label for="SourceNotSure" class="Radio">Not Sure</label>
+			</div>
+			<div class="FormFieldSet">
+				<label for="Aroma">Aroma:</label>
+				<input type="text" name="Aroma" id="Aroma" />
+			</div>
+			<div class="FormFieldSet">
+				<label for="Flavor">Flavor:</label>
+				<input type="text" name="Flavor" id="Flavor" />
+			</div>
+			<div class="FormFieldSet">
+				<label>Purchase Location:</label>
+				<div class="Vertical">
+					<label>State</label><br />
+					<select name="PurchaseLocationState" id="PurchaseLocationState" />
+						<option value=""></option>
+						{% for State in States %}
+							<option value="{{State.key}}">{{State.Name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="Vertical">
+					<label>City</label><br />
+					<input type="text" name="PurchaseLocationCity" id="PurchaseLocationCity" />
+				</div>
+				<div class="Vertical">
+					<label>Establishment</label><br />
+					<input type="text" name="PurchaseLocationEstablishment" id="PurchaseLocationEstablishment" />
+				</div>
+			</div>
+		</fieldset>
+		<div class="FormFieldSet">
+			<label>&nbsp;</label>
+			<input type="submit" value="Submit" class="SubmitButton" />
+		</div>	
+	</form>
+	
+{% endblock %}

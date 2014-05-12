@@ -1,0 +1,35 @@
+{% extends "viewbrewery.html" %}
+{% block beercontent %}
+	<h2>Add Beer</h2>
+	<form action="/admin/addbeeraction/{{Brewery.key}}" method="post" id="Form">
+		<div class="FormFieldSet">
+			<label for="Name"><span class="Required">*</span> Beer Name:</label>
+			<input type="text" name="Name" id="Name" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="Style">Style:</label>
+			<select name="Style" id="Style">
+				<option value="None"></option>
+				{% for Style in Styles %}
+					<option value="{{Style.key}}">{{Style.Name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="FormFieldSet">
+			<label for="Family">Family:</label>
+			<input type="text" name="Family" id="Family" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="ABV">ABV:</label>
+			<input type="text" name="ABV" id="ABV" />
+		</div>
+		<div class="FormFieldSet">
+			<label for="IBU">IBU:</label>
+			<input type="text" name="IBU" id="IBU" />
+		</div>
+		<div class="FormFieldSet">
+			<label>&nbsp;</label>
+			<input type="submit" value="Submit" class="SubmitButton" />
+		</div>
+	</form>
+{% endblock %}
